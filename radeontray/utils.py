@@ -42,10 +42,10 @@ def verifier(client=None):
         message = client.recv_string()
         return int(message)
     else:
-        cards = 0
-        if path.isdir("/sys/class/drm/card0"):
-            cards += 1
-        if path.isdir("/sys/class/drm/card1"):
+        cards = []
+        if path.isfile("/sys/class/drm/card0/device/power_method"):
+            cards += 0
+        if path.isfile("/sys/class/drm/card1/device/power_method"):
             cards += 1
         if cards == 0:
             sys.exit("No suitable cards found.\nAre you using the OSS Radeon \
@@ -92,7 +92,7 @@ def radeon_info_get(client=None):
     else:
         cards = verifier()
         radeon_info = ""
-        for xc in range(cards):
+        for xc in cards:
             radeon_info += "----- Card%d -----\n" % xc
             method, state = power_status_get(xc).split(",")
             radeon_info += "Power method: %s\nPower state: %s\n" % (method, state)
