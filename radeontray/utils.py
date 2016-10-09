@@ -50,7 +50,8 @@ def verifier(client=None):
         if cards == 0:
             sys.exit("No suitable cards found.\nAre you using the OSS Radeon \
     drivers?\nExiting the program.")
-        return cards
+        #return cards
+        return 1
 
 def temp_location():
     """Tests a few paths for card temperature
@@ -92,7 +93,7 @@ def radeon_info_get(client=None):
     else:
         cards = verifier()
         radeon_info = ""
-        for xc in cards:
+        for xc in [cards]:
             radeon_info += "----- Card%d -----\n" % xc
             method, state = power_status_get(xc).split(",")
             radeon_info += "Power method: %s\nPower state: %s\n" % (method, state)
