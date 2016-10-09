@@ -135,7 +135,7 @@ def radeon_info_get(client=None):
         return radeon_info
 
 
-def power_status_get(num=0, client=None):
+def power_status_get(num=1, client=None):
     """Get the power status. Uses with to close the file immediatelly
     """
     if client is not None:
