@@ -44,9 +44,9 @@ def verifier(client=None):
     else:
         cards = []
         if path.isfile("/sys/class/drm/card0/device/power_method"):
-            cards += 0
+            cards += [0]
         if path.isfile("/sys/class/drm/card1/device/power_method"):
-            cards += 1
+            cards += [1]
         if cards == 0:
             sys.exit("No suitable cards found.\nAre you using the OSS Radeon \
     drivers?\nExiting the program.")
